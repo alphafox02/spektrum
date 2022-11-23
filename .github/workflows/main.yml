@@ -51,7 +51,7 @@ jobs:
           sudo cp target/rtlspektrum.jar "$HOME/sketchbook/libraries/rtlspektrum/library/"
           sudo cp target/lib/bridj-0.7.0.jar "$HOME/sketchbook/libraries/rtlspektrum/library/bridj.jar"
           cd ..
-          sudo /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}" --output="${{runner.workspace}}/spektrum" --force --export
+          sudo /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}/spectrum" --output="${{runner.workspace}}/spektrum" --force --export
           sudo mkdir -p spektrum/data
           sudo cp -L rtl-sdr/src/librtlpower.so spektrum/lib/
           sudo cp -L rtl-sdr/src/librtlsdr.so spektrum/lib/
