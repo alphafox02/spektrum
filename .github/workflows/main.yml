@@ -34,7 +34,7 @@ jobs:
           cd "${{runner.workspace}}"
           sudo git clone https://github.com/pavels/rtl-sdr
           cd rtl-sdr
-          sudo cmake .
+          sudo cmake -DDETACH_KERNEL_DRIVER=ON .
           sudo make
           cd ..
           sudo mkdir -p $HOME/sketchbook/libraries/rtlspektrum/library
@@ -51,13 +51,11 @@ jobs:
           sudo cp target/rtlspektrum.jar "$HOME/sketchbook/libraries/rtlspektrum/library/"
           sudo cp target/lib/bridj-0.7.0.jar "$HOME/sketchbook/libraries/rtlspektrum/library/bridj.jar"
           cd ..
-          sudo rm -r spektrum
-          git clone https://github.com/alphafox02/spektrum.git
-          sudo /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}/spektrum/" --output="${{runner.workspace}}/spektrum_out" --force --export
+          sudo /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}/spektrum/" --output="${{runner.workspace}}/spektrum_latest" --force --export
           sudo mkdir -p spektrum_out/data
-          sudo cp -L rtl-sdr/src/librtlpower.so spektrum_out/lib/
-          sudo cp -L rtl-sdr/src/librtlsdr.so spektrum_out/lib/
-          sudo tar -czf spektrum-linux64.tar.gz spektrum_out
+          sudo cp -L rtl-sdr/src/librtlpower.so spektrum_latest/lib/
+          sudo cp -L rtl-sdr/src/librtlsdr.so spektrum_latest/lib/
+          sudo tar -czf spektrum-linux64.tar.gz spektrum_latest
 
       - name: Upload ZIP
         uses: actions/upload-artifact@v2
