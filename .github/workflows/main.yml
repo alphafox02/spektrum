@@ -51,7 +51,7 @@ jobs:
           cp target/rtlspektrum.jar "$HOME/sketchbook/libraries/rtlspektrum/library/"
           cp target/lib/bridj-0.7.0.jar "$HOME/sketchbook/libraries/rtlspektrum/library/bridj.jar"
           cd ..
-          /opt/processing-3.5.4/processing-java --sketch="$TRAVIS_BUILD_DIR" --output="$TRAVIS_BUILD_DIR/spektrum" --force --export
+          /opt/processing-3.5.4/processing-java --sketch="/usr/src" --output="/usr/spektrum" --force --export
           mkdir -p spektrum/data
           cp -L rtl-sdr/src/librtlpower.so spektrum/lib/
           cp -L rtl-sdr/src/librtlsdr.so spektrum/lib/
