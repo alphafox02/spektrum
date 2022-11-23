@@ -46,7 +46,7 @@ jobs:
           sudo cp -f controlP5.jar controlP5/library
           cd /usr/src
           sudo git clone https://github.com/alphafox02/processing-rtlspektrum-lib.git
-          cd processing-rtlspektum-lib
+          cd processing-rtlspektrum-lib
           sudo mvn package
           sudo cp library.properties /usr/src/sketchbook/libraries/rtlspektrum/
           sudo cp target/rtlspektrum.jar /usr/src/sketchbook/libraries/rtlspektrum/library/
