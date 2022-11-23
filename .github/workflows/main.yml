@@ -63,4 +63,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Spektrum-Latest
-          path: ${{runner.workspace}}/build/*.tar.gz
+          path: ${{runner.workspace}}/*.tar.gz
