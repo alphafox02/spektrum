@@ -31,8 +31,7 @@ jobs:
         # Some projects don't allow in-source building, so create a separate build directory
         # We'll use this as our working directory for all subsequent commands
         run: |
-          mkdir ${{runner.workspace}}/build
-          cd "${{runner.workspace}}/build"
+          cd "${{runner.workspace}}"
           sudo git clone https://github.com/pavels/rtl-sdr
           cd rtl-sdr
           sudo cmake .
@@ -44,7 +43,7 @@ jobs:
           sudo unzip -x controlP5-2.2.5.zip
           sudo wget https://github.com/Viproz/controlp5/releases/download/v2.2.7b/controlP5.jar
           sudo cp -f controlP5.jar controlP5/library
-          cd "${{runner.workspace}}/build"
+          cd "${{runner.workspace}}"
           sudo git clone https://github.com/alphafox02/spektrum.git
           sudo git clone https://github.com/alphafox02/processing-rtlspektrum-lib.git
           cd processing-rtlspektrum-lib
@@ -53,7 +52,7 @@ jobs:
           sudo cp target/rtlspektrum.jar "$HOME/sketchbook/libraries/rtlspektrum/library/"
           sudo cp target/lib/bridj-0.7.0.jar "$HOME/sketchbook/libraries/rtlspektrum/library/bridj.jar"
           cd ..
-          sudo /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}/build" --output="${{runner.workspace}}/build/spektrum" --force --export
+          sudo /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}" --output="${{runner.workspace}}/spektrum" --force --export
           sudo mkdir -p spektrum/data
           sudo cp -L rtl-sdr/src/librtlpower.so spektrum/lib/
           sudo cp -L rtl-sdr/src/librtlsdr.so spektrum/lib/
