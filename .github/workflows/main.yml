@@ -31,7 +31,7 @@ jobs:
         # Some projects don't allow in-source building, so create a separate build directory
         # We'll use this as our working directory for all subsequent commands
         run: |
-          cmake -E make_directory ${{runner.workspace}}/build
+          mkdir ${{runner.workspace}}/build
           cd "${{runner.workspace}}/build"
           sudo git clone https://github.com/pavels/rtl-sdr
           cd rtl-sdr
@@ -44,7 +44,7 @@ jobs:
           unzip -x controlP5-2.2.5.zip
           wget https://github.com/Viproz/controlp5/releases/download/v2.2.7b/controlP5.jar
           cp -f controlP5.jar controlP5/library
-          cd "$${{runner.workspace}}/build"
+          cd "${{runner.workspace}}/build"
           sudo git clone https://github.com/alphafox02/spektrum.git
           sudo git clone https://github.com/alphafox02/processing-rtlspektrum-lib.git
           cd processing-rtlspektrum-lib
