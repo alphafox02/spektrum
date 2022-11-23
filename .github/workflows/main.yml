@@ -37,8 +37,8 @@ jobs:
           cmake .
           make
           cd ..
-          mkdir -p $HOME/sketchbook/libraries/rtlspektrum/library
-          cd "$HOME/sketchbook/libraries"
+          mkdir -p /usr/src/sketchbook/libraries/rtlspektrum/library
+          cd /usr/src/sketchbook/libraries"
           wget https://github.com/sojamo/controlp5/releases/download/v2.2.5/controlP5-2.2.5.zip
           unzip -x controlP5-2.2.5.zip
           wget https://github.com/Viproz/controlp5/releases/download/v2.2.7b/controlP5.jar
@@ -47,9 +47,9 @@ jobs:
           git clone https://github.com/pavels/processing-rtlspektum-lib
           cd processing-rtlspektum-lib
           mvn package
-          cp library.properties "$HOME/sketchbook/libraries/rtlspektrum/"
-          cp target/rtlspektrum.jar "$HOME/sketchbook/libraries/rtlspektrum/library/"
-          cp target/lib/bridj-0.7.0.jar "$HOME/sketchbook/libraries/rtlspektrum/library/bridj.jar"
+          cp library.properties /usr/src/sketchbook/libraries/rtlspektrum/
+          cp target/rtlspektrum.jar /usr/src/sketchbook/libraries/rtlspektrum/library/
+          cp target/lib/bridj-0.7.0.jar /usr/src/sketchbook/libraries/rtlspektrum/library/bridj.jar
           cd ..
           /opt/processing-3.5.4/processing-java --sketch="/usr/src" --output="/usr/spektrum" --force --export
           mkdir -p spektrum/data
