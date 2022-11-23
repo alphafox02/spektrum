@@ -32,30 +32,30 @@ jobs:
         # We'll use this as our working directory for all subsequent commands
         run: |
           cd "${{runner.workspace}}"
-          sudo git clone https://github.com/pavels/rtl-sdr
+          git clone https://github.com/pavels/rtl-sdr
           cd rtl-sdr
-          sudo cmake -DDETACH_KERNEL_DRIVER=ON .
-          sudo make
+          cmake -DDETACH_KERNEL_DRIVER=ON .
+          make
           cd ..
-          sudo mkdir -p $HOME/sketchbook/libraries/rtlspektrum/library
+          mkdir -p $HOME/sketchbook/libraries/rtlspektrum/library
           cd "$HOME/sketchbook/libraries"
-          sudo wget https://github.com/sojamo/controlp5/releases/download/v2.2.5/controlP5-2.2.5.zip
-          sudo unzip -x controlP5-2.2.5.zip
-          sudo wget https://github.com/Viproz/controlp5/releases/download/v2.2.7b/controlP5.jar
-          sudo cp -f controlP5.jar controlP5/library
+          wget https://github.com/sojamo/controlp5/releases/download/v2.2.5/controlP5-2.2.5.zip
+          unzip -x controlP5-2.2.5.zip
+          wget https://github.com/Viproz/controlp5/releases/download/v2.2.7b/controlP5.jar
+          cp -f controlP5.jar controlP5/library
           cd "${{runner.workspace}}"
-          sudo git clone https://github.com/alphafox02/processing-rtlspektrum-lib.git
+          git clone https://github.com/alphafox02/processing-rtlspektrum-lib.git
           cd processing-rtlspektrum-lib
-          sudo mvn package
-          sudo cp library.properties "$HOME/sketchbook/libraries/rtlspektrum/"
-          sudo cp target/rtlspektrum.jar "$HOME/sketchbook/libraries/rtlspektrum/library/"
-          sudo cp target/lib/bridj-0.7.0.jar "$HOME/sketchbook/libraries/rtlspektrum/library/bridj.jar"
+          mvn package
+          cp library.properties "$HOME/sketchbook/libraries/rtlspektrum/"
+          cp target/rtlspektrum.jar "$HOME/sketchbook/libraries/rtlspektrum/library/"
+          cp target/lib/bridj-0.7.0.jar "$HOME/sketchbook/libraries/rtlspektrum/library/bridj.jar"
           cd ..
-          sudo /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}/spektrum/" --output="${{runner.workspace}}/spektrum_latest" --force --export
-          sudo mkdir -p spektrum_out/data
-          sudo cp -L rtl-sdr/src/librtlpower.so spektrum_latest/lib/
-          sudo cp -L rtl-sdr/src/librtlsdr.so spektrum_latest/lib/
-          sudo tar -czf spektrum-linux64.tar.gz spektrum_latest
+          /opt/processing-3.5.4/processing-java --sketch="${{runner.workspace}}/spektrum/" --output="${{runner.workspace}}/spektrum_latest" --force --export
+          mkdir -p spektrum_out/data
+          cp -L rtl-sdr/src/librtlpower.so spektrum_latest/lib/
+          cp -L rtl-sdr/src/librtlsdr.so spektrum_latest/lib/
+          tar -czf spektrum-linux64.tar.gz spektrum_latest
 
       - name: Upload ZIP
         uses: actions/upload-artifact@v2
